@@ -1,0 +1,15 @@
+Date.prototype.IsInPeriod = function (From, To) {
+    try {
+        var DateFrom = new Date(From);
+        var DateTo = new Date(To);
+        if (DateTo < DateFrom)
+            return "Date To Can't Be Before Date From ";
+        if (this >= DateFrom && this <= DateTo)
+            return true;
+        return false;
+    }
+    catch (ex)
+    {
+        return ex;
+    }
+}
