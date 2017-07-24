@@ -1,0 +1,26 @@
+Date.prototype.IsInPeriod = function (From, To) {
+    try {
+        var DateFrom = new Date(From);
+        var DateTo = new Date(To);
+        if (DateTo < DateFrom)
+            return "Date To Can't Be Before Date From ";
+        if (this >= DateFrom && this <= DateTo)
+            return true;
+        return false;
+    }
+    catch (ex) {
+        return ex;
+    }
+}
+
+
+
+function AddPagingButtons(NumberOfPages) {
+    var ButtonsDiv = "<div>";
+    for (var i = 1  ; i <= NumberOfPages ; i++)
+        if (i == 1)
+            ButtonsDiv += '<button id="btnPage"' + i + ' class="SelectedPagingButton">' + i + '</button>';
+        else
+            ButtonsDiv += '<button id="btnPage"' + i + ' class="PagingButton">' + i + '</button>';
+    return ButtonsDiv += '</div>';
+}
