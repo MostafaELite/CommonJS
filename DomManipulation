@@ -1,5 +1,5 @@
 function ClearControlsValue(ArrayOfControlsNames) {
-    for (var i in ArrayOfControlls)
+    for (var i in ArrayOfControlsNames)
         document.getElementById(ArrayOfControlls[i]).value = null;
 }
 
