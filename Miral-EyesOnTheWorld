@@ -1,0 +1,38 @@
+function GroupNews(ArrayOfNews) {
+    var Categories = [];
+    for (var i in ArrayOfNews) {
+        if (Categories.indexOf(ArrayOfNews[i].Category) == -1) {
+            Categories.push(ArrayOfNews[i].Category);
+            var UL = document.createElement('ul');
+            UL.id = 'UL-' + ArrayOfNews[i].Category;
+            UL.innerHTML = '<li id="CH-' + ArrayOfNews[i].Category + '" class="LiHeader" onclick="LiHeader_Onclick(this)">' +'- '+ ArrayOfNews[i].Category + '</li>';
+            document.getElementById('NewsDiv').appendChild(UL);
+            CreateNewsListItem(ArrayOfNews[i].Id, ArrayOfNews[i].Title, ArrayOfNews[i].Category);
+
+        }
+        else
+            CreateNewsListItem(ArrayOfNews[i].Id, ArrayOfNews[i].Title, ArrayOfNews[i].Category);
+    }
+}
+function CreateNewsListItem(Id, Title, Category) {
+    var Li = document.createElement('li');
+    Li.id = 'LI-' + Id;
+    Li.innerHTML = '<a href="Http://MyServer.com/MyList/DislayId=' + Id + '">' + Title + '</a>';
+    var n = 'CH-' + Category;
+    document.getElementById('UL-' + Category).appendChild(Li);
+}
+function LiHeader_Onclick(ClickedLabel) {
+    var Siblings = ClickedLabel.parentNode.childNodes;
+    if (Siblings[1].style.display == 'none') {
+        Siblings[0].innerText = "-" + Siblings[0].innerText.substring(1, Siblings[0].innerText.length);
+        for (var i = 1; i < Siblings.length ; i++)
+            Siblings[i].style.display = 'block';
+    }
+
+    else {
+        Siblings[0].innerText = "+" + Siblings[0].innerText.substring(1, Siblings[0].innerText.length);
+        for (var i = 1; i < Siblings.length ; i++)
+            Siblings[i].style.display = 'none';
+    }
+        
+}
