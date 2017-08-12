@@ -1,0 +1,76 @@
+<body>
+    <div id="Filtration">
+        <select id="FilterBy">
+            <option value="null">None</option>
+            <option value="ID">Idea ID</option>
+            <option value="Title">Idea Title</option>
+            <option value="Geography">Geography</option>
+            <option value="Nature">Nature</option>
+            <option value="Seasonality">Seasonality</option>
+            <option value="TimeOfDay">Time of day</option>
+            <option value="CustomerJourney">Customer Journey</option>
+            <option value="LeisureAndEntertainment">Leisure and Entertainment</option>
+            <option value="Visitor">Visitor</option>
+            <option value="Resident">Resident</option>
+            <option value="Visitor">Visitor</option>
+            <option value="ReDefine">Re-define</option>
+            <option value="Welcoming">Welcoming</option>
+            <option value="Memorable">Memorable</option>
+            <option value="Escape">Escape</option>
+            <option value="Exhilarating">Exhilarating</option>
+            <option value="OperatingModel">Operating Model</option>
+        </select>
+        <input type="text" id="txtSearchFor" required />
+        <button id="bntFilter" onclick="Filter()">Filter</button>
+    </div>
+
+
+
+    <script>
+        var StrategicAlignmentFields =
+            [
+               "YasIslandAlignment",
+               "MiralAlignment",
+               "ValueAddition",
+               "Conflicts",
+               "PortfolioSynergy"
+            ];
+        var StrategicImpactFields =
+            [
+              "Marketenvironment",
+              "CustomerNeed",
+              "SustainableAdvantage",
+              "ROI",
+              "OpportunityCost",
+             "FutureOpportunities",
+              "PullFactor"
+            ];
+        var OpreationFeasibilityFields =
+            [
+                "Location",
+                "Scalability",
+                "ManagementBandwidth",
+                "PartnerCapabilities",
+                "Dependencies",
+                "TechnicalCertainty",
+                "TestableIncrementally",
+                "OperationalFeasibilityScore"
+            ];
+        function GetScore(ArrayOfFieldsToSum, WeightField) {
+            //Sum Of The Fields Score
+            var FieldsSum = 0;
+            for (var i in FieldsToSum) {
+                var FieldValue = document.getElementById("txt" + FieldsToSum[i]).value;
+                if (FieldValue)
+                    FieldsSum += FieldValue;
+            }
+            var DevidedBy = ArrayOfFieldsToSum.length * 3;
+            FieldsSum /= DevidedBy;
+            Weight = document.getElementById(WeightField);
+            return FieldsSum * Weight;
+        }
+        GetScore(StrategicAlignmentFields, 'txtStrategicAlignmentWeight')
+        GetScore(StrategicImpactFields, 'txtStrategicImpactWeight')
+        GetScore(OpreationFeasibilityFields, 'txtOperationalFeasibilityWeight')
+    </script>
+</body>
