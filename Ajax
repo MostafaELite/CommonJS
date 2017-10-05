@@ -1,0 +1,16 @@
+function FillDivWithAjax(RequestUrl,DivId,QueryObject) {
+    $.ajax(
+    {
+        url: RequestUrl,
+        type: 'POST',
+        data: QueryObject
+    })
+    .done(function (Response) {
+        console.log(Response);
+        $('#' + DivId).html(Response);
+    })
+    .fail(function (Error) {
+        console.log(Error);
+        $('#' + DivId).html('<h3>Error Connecting To Server See Log For Details</h3>');
+    })
+}
